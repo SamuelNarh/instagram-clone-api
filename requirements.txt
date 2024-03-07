@@ -1,0 +1,19 @@
+uvicorn
+fastapi
+sqlalchemy
+passlib
+bcrypy
+
+
+
+
+
+# DESIGN PROCESS
+# SignUP Login ,LogOut
+#Upload an Image with a caption
+#Retrieve and display all post
+#Delete a post
+# ---Only available to creators
+#Commnet
+# ---Only when authenticated
+#----Retrieve and display all comments for apost
