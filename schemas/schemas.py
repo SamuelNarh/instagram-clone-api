@@ -10,18 +10,18 @@ class UserDisplay(BaseModel):
     username:str
     email:str
     class Config():
-        orm_mode=True
+        from_attributes=True
     
 #for post display    
 class User(BaseModel):
     username:str
     class Config():
-        orm_mode=True
+        from_attributes=True
 class PostBase(BaseModel):
     image_url:str
     image_url_type:str
     caption:str
-    creation_id:int
+    creator_id:int
     
 class PostDisplay(BaseModel):
     id:int
@@ -31,5 +31,5 @@ class PostDisplay(BaseModel):
     timestamp:datetime
     user:User
     class Config():
-        orm_mode=True
+        from_attributes=True
     
