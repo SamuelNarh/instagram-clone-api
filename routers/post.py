@@ -1,8 +1,10 @@
-from fastapi import APIRouter,Depends, HTTPException,status
+from typing import List
+from fastapi import APIRouter,Depends, File, HTTPException, UploadFile,status
 from schemas.schemas import *
 from sqlalchemy.orm.session import Session
 from db.database import get_db
 from db import db_post
+
 
 router= APIRouter(
     prefix="/post",
@@ -19,6 +21,14 @@ def create_post(request:PostBase,db:Session=Depends(get_db)):
         )
     return db_post.create_post(request,db)
 
-@router.get('/all')
+@router.get('/all',response_model=List[PostDisplay])
 def get_all_post(db:Session=Depends(get_db)):
     return db_post.get_all_post(db)
+
+
+# This allows us to upload images locally to access it
+@router.post('/image')
+def upload_image(image:UploadFile=File(...)):
+    pass
+    
+    
