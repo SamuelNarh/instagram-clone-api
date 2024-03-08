@@ -18,3 +18,7 @@ def create_post(request:PostBase,db:Session=Depends(get_db)):
             detail="Parameter image_url_type can only take values 'absolute' or 'relative'"     
         )
     return db_post.create_post(request,db)
+
+@router.get('/all')
+def get_all_post(db:Session=Depends(get_db)):
+    return db_post.get_all_post(db)
