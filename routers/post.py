@@ -3,6 +3,7 @@ import shutil
 import string
 from typing import List
 from fastapi import APIRouter,Depends, File, HTTPException, UploadFile,status
+from auth.oauth2 import get_current_user
 from schemas.schemas import *
 from sqlalchemy.orm.session import Session
 from db.database import get_db
@@ -15,8 +16,9 @@ router= APIRouter(
 )
 image_url_types=['absolute','relative']
 
+#For auth current_user:UserAuth = Depends(get_current_user)
 @router.post('/',response_model=PostDisplay)
-def create_post(request:PostBase,db:Session=Depends(get_db)):
+def create_post(request:PostBase,db:Session=Depends(get_db),current_user:UserAuth = Depends(get_current_user)):
     if not request.image_url_type in image_url_types:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -32,7 +34,7 @@ def get_all_post(db:Session=Depends(get_db)):
 # This allows us to upload images locally to access it
 #Static image file store
 @router.post('/image')
-def upload_image(image:UploadFile=File(...)):
+def upload_image(image:UploadFile=File(...),current_user:UserAuth = Depends(get_current_user)):
     letters=string.ascii_letters
     rand_str = ''.join(random.choice(letters) for i in range(5))
     new = f'_{rand_str}.'
