@@ -2,7 +2,10 @@ uvicorn
 fastapi
 sqlalchemy
 passlib
-bcrypy
+bcrypt
+# To allow static images and files //
+python-multipart
+aiofiles
 
 
 
