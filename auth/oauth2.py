@@ -10,7 +10,7 @@ from fastapi import HTTPException, status
 from db import db_user
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 SECRET_KEY = '843f0f26c9413f7ffcfb55e08d69d010455d4595705ac2a7f327dd8fa8a0b4b5'
 ALGORITHM = 'HS256'
@@ -35,7 +35,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
   try:
     payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
     #authenticate username
-    username: str = payload.get("sub")
+    username: str = payload.get("username")
     if username is None:
       raise credentials_exception
   except JWTError:
