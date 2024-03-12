@@ -40,7 +40,7 @@ class PostDisplay(BaseModel):
     timestamp:datetime
     user:User
     # Display the comments
-    comments:list[Comment]
+    comments:List[Comment]
     class Config():
         from_attributes=True
         
