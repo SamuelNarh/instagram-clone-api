@@ -4,6 +4,8 @@ from db.database import engine
 from routers import user,post,comment
 from fastapi.staticfiles import StaticFiles
 from auth import authentication
+#Midddleware
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
@@ -21,3 +23,17 @@ app.include_router(authentication.router)
 models.Base.metadata.create_all(engine) 
 
 app.mount('/images', StaticFiles(directory='images'), name='images')
+
+
+
+#Middleware
+origin =[
+'http://localhost:3000'
+]
+app.add_middleware(
+CORSMiddleware,
+allow_origins=origin,
+allow_credentials=True,
+allow_methods=['*'],
+allow_headers=['*']
+)
