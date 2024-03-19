@@ -20,6 +20,7 @@ class User(BaseModel):
         from_attributes=True
         
 class Comment(BaseModel):
+    id:int
     text:str
     username:str
     timestamp:datetime
