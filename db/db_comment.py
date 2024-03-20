@@ -17,6 +17,6 @@ def create(db:Session,request:CommentBase):
     return new_comment
 
 def get_all_comments(db:Session,post_id:int):
-    return db.query(DbComment).filter(DbComment.id==post_id).all()
+    return db.query(DbComment).filter(DbComment.post_id==post_id).all()
     
     
