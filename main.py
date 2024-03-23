@@ -28,7 +28,7 @@ app.mount('/images', StaticFiles(directory='images'), name='images')
 
 #Middleware
 origin =[
-'http://localhost:3000'
+'https://samuelnarh.github.io'
 ]
 app.add_middleware(
 CORSMiddleware,
