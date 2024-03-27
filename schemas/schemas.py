@@ -26,6 +26,12 @@ class Comment(BaseModel):
     timestamp:datetime
     class Config():
         from_attributes=True
+        
+class Like(BaseModel):
+    id:int
+    total:int
+    class Config():
+        from_attributes=True
     
 class PostBase(BaseModel):
     image_url:str
@@ -42,6 +48,8 @@ class PostDisplay(BaseModel):
     user:User
     # Display the comments
     comments:List[Comment]
+    #Display the Likes
+    like:List[Like]
     class Config():
         from_attributes=True
         
@@ -55,3 +63,13 @@ class CommentBase(BaseModel):
     username:str
     text:str
     post_id:int
+    
+class LikeBase(BaseModel):
+    total:int
+    post_id:int
+    
+class LikeDisplay(BaseModel):
+    total:int
+    post_id:int
+    class Config():
+        from_attributes=True
