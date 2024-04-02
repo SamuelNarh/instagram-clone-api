@@ -15,5 +15,5 @@ def add_like(request:LikeBase,db:Session):
     
 
 def get_all(post_id:int,db:Session):
-    Likes = db.query(DbLike).filter(DbLike.post_id==post_id).all()
+    Likes = db.query(DbLike).filter(DbLike.post_id==post_id).first()
     return Likes
