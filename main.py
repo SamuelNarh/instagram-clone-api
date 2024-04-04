@@ -17,8 +17,9 @@ def hello():
 app.include_router(user.router)
 app.include_router(post.router)
 app.include_router(comment.router)
-app.include_router(authentication.router)
 app.include_router(like.router)
+app.include_router(authentication.router)
+
 
 #Model Registration
 models.Base.metadata.create_all(engine) 
