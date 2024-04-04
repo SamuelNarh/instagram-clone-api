@@ -25,5 +25,5 @@ def update_like(post_id:int,request:LikeBase,db:Session):
     return "ok"
 
 def get_all(post_id:int,db:Session):
-    Likes = db.query(DbLike).filter(DbLike.post_id==post_id).order_by(DbLike.id.desc()).first()
+    Likes = db.query(DbLike).filter(DbLike.post_id==post_id).all()
     return Likes
