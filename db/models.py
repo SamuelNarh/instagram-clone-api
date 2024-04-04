@@ -6,7 +6,7 @@ class  DbUser(Base):
     __tablename__="user"
     id=Column(Integer,primary_key=True,index=True)
     username=Column(String(64))
-    email=Column(String(120),unique=True)
+    email=Column(String(120))
     password=Column(String)
     #Relationship
     items= relationship('DbPost',back_populates='user')
