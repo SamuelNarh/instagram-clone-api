@@ -27,9 +27,12 @@ class Comment(BaseModel):
     class Config():
         from_attributes=True
         
-class Like(BaseModel):
+
+class LikeDisplay(BaseModel):
     id:int
+    post_id:int
     total:int
+    
     class Config():
         from_attributes=True
     
@@ -49,7 +52,7 @@ class PostDisplay(BaseModel):
     # Display the comments
     comments:List[Comment]
     #Display the Likes
-    like:List[Like]
+    like:List[LikeDisplay]
     class Config():
         from_attributes=True
         
@@ -68,8 +71,3 @@ class LikeBase(BaseModel):
     total:int
     post_id:int
     
-class LikeDisplay(BaseModel):
-    total:int
-    post_id:int
-    class Config():
-        from_attributes=True

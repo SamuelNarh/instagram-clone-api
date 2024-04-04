@@ -14,8 +14,13 @@ router=APIRouter(
 def add_like(request:LikeBase,db:Session=Depends(get_db),current_user:UserAuth = Depends(get_current_user)):
     return db_like.add_like(request,db)
 
+#Update Like
+@router.post('/{post_id}/update')
+def update_like(id:int,request:LikeBase,db:Session=Depends(get_db)):
+    return db_like.update_like(id,request,db)
 
 #Get all likes
 @router.get('/all/{post_id}')
 def all_likes(post_id:int,db:Session=Depends(get_db)):
     return db_like.get_all(post_id,db)
+

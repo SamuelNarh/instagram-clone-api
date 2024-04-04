@@ -13,6 +13,16 @@ def add_like(request:LikeBase,db:Session):
     db.refresh(liked)
     return liked
     
+def update_like(post_id:int,request:LikeBase,db:Session):
+    up_like=db.query(DbLike).filter(DbLike.post_id==post_id)
+    up_like.update(
+        {
+            DbLike.total: request.total,
+            DbLike.post_id: request.post_id,
+        }
+    )
+    db.commit()
+    return "ok"
 
 def get_all(post_id:int,db:Session):
     Likes = db.query(DbLike).filter(DbLike.post_id==post_id).order_by(DbLike.id.desc()).first()
