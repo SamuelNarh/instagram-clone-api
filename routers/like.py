@@ -16,7 +16,7 @@ def add_like(request:LikeBase,db:Session=Depends(get_db),current_user:UserAuth =
 
 #Update Like
 @router.post('/{post_id}/update')
-def update_like(id:int,request:LikeBase,db:Session=Depends(get_db),current_user:UserAuth = Depends(get_current_user)):
+def update_like(id:int,request:LikeBase,db:Session=Depends(get_db)):
     return db_like.update_like(id,request,db)
 
 #Get all likes
